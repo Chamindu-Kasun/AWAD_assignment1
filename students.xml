@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<student_menu>
+  <student id="62b2cc4b77117d6a39c47803">
+    <name>Chamindu Kasun</name>
+    <school>Poramadulla C.C.</school>
+    <grade>11</grade>
+    <email>chamindu@gmail.com</email>
+  </student>
+  <student id="62b44678f500c256433b5c25">
+    <name>Akila Eranga</name>
+    <school>Poramadulla C.C.</school>
+    <grade>13</grade>
+    <email>akila@gmail.com</email>
+  </student>
+  <student id="62b446b5f500c256433b5c26">
+    <name>Supun Dissanayake</name>
+    <school>Poramadulla C.C.</school>
+    <grade>10</grade>
+    <email>supun@gmail.com</email>
+  </student>
+  <student id="62b446d9f500c256433b5c27">
+    <name>Dilan Dissanayake</name>
+    <school>Poramadulla C.C.</school>
+    <grade>06</grade>
+    <email>dilan@gmail.com</email>
+  </student>
+</student_menu>

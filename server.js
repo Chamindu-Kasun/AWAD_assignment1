@@ -24,11 +24,9 @@ connection.once("open", () => {
   console.log("Connected to MongoDB");
 });
 
-const foods = require("./routes/foods");
-// const customers = require("./routes/customers");
+const students = require("./routes/students");
 
-app.use("/foods", foods);
-// app.use("/customers", customers);
+app.use("/students", students);
 
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);

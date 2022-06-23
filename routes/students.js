@@ -1,21 +1,21 @@
-const express = require('express')
+const express = require("express");
 const router = express.Router();
 var fs = require("fs"),
   parseString = require("xml2js").parseString,
   xml2js = require("xml2js");
 
-let Food = require("../models/food");
+let Student = require("../models/student");
 
 router.get("/", (req, res) => {
-  Food.find()
-    .then((food) => {
-      fs.readFile("foods.xml", "utf-8", function (err, data) {
+  Student.find()
+    .then((student) => {
+      fs.readFile("students.xml", "utf-8", function (err, data) {
         if (err) {
           console.log(err);
-          res.json({ data: food, xml: null });
+          res.json({ data: student, xml: null });
         }
         if (data) {
-          res.json({ data: food, xml: data });
+          res.json({ data: student, xml: data });
         }
       });
     })
@@ -23,17 +23,17 @@ router.get("/", (req, res) => {
 });
 
 router.post("/add", (req, res) => {
-  const newFood = new Food({
-    name: req.body.food.name[0],
-    price: req.body.food.price[0],
-    description: req.body.food.description[0],
-    calories: req.body.food.calories[0],
+  const newStudent = new Student({
+    name: req.body.student.name[0],
+    school: req.body.student.school[0],
+    grade: req.body.student.grade[0],
+    email: req.body.student.email[0],
   });
 
-  newFood
+  newStudent
     .save()
-    .then((addedFood) => {
-      fs.readFile("foods.xml", "utf-8", function (err, data) {
+    .then((addedStudent) => {
+      fs.readFile("students.xml", "utf-8", function (err, data) {
         if (err) console.log(err);
         if (data) {
           parseString(data, function (err, result) {
@@ -41,17 +41,17 @@ router.post("/add", (req, res) => {
             if (result) {
               var xmlDoc = result;
 
-              xmlFood = {
-                $: { id: addedFood._id },
-                ...req.body.food,
+              xmlStudent = {
+                $: { id: addedStudent._id },
+                ...req.body.student,
               };
 
-              xmlDoc.breakfast_menu.food.push(xmlFood);
+              xmlDoc.student_menu.student.push(xmlStudent);
 
               var builder = new xml2js.Builder();
               var xml = builder.buildObject(xmlDoc);
 
-              fs.writeFile("foods.xml", xml, function (err, data) {
+              fs.writeFile("students.xml", xml, function (err, data) {
                 if (err) console.log(err);
               });
             }
@@ -59,7 +59,7 @@ router.post("/add", (req, res) => {
         }
       });
 
-      res.json({ addedFood, msg: "New Food added" });
+      res.json({ addedStudent, msg: "New Student added" });
     })
     .catch((err) => res.status(400).json("Error: " + err));
 });
